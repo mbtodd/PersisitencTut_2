@@ -34,11 +34,10 @@ class PlayerDataRestController(val PlayerDataRepo: PlayerDataRepository)
 	{
 		PlayerDataRepo.save(PlayerData)
 	}
-
 }
 
 @Entity
 class playerdata(
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	val Id: Long = 0, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
+	val Id: Long = 0, var isvalid: Boolean = false, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
 )
