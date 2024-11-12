@@ -36,7 +36,6 @@ class PlayerDataRestController(val PlayerDataRepo: PlayerDataRepository)
 	fun GetPID(@PathVariable(value = "PID") PID: Int) : playerdata
 	{
 		var PData = PlayerDataRepo.GetByPID(PID)
-
 		return PData;
 	}
 
