@@ -59,6 +59,12 @@ class CubeDataRestController(val CubeDataRepo: CubeDataRepository)
 	@GetMapping("CubeData")
 	fun GetAll() = CubeDataRepo.findAll()
 
+	@PostMapping("CubeData")
+	fun SaveCubeData(@RequestBody CubeData: cubedata)
+	{
+		CubeDataRepo.save(CubeData)
+	}
+
 }
 
 // API Call
