@@ -25,6 +25,11 @@ interface PlayerDataRepository: JpaRepository<playerdata, Long>
 	fun GetByPID(@Param("PID") PID: Int): playerdata
 }
 
+interface CubeDataRepository: JpaRepository<cubedata, Long>
+{
+
+}
+
 @RestController
 @RequestMapping("api")
 class PlayerDataRestController(val PlayerDataRepo: PlayerDataRepository)
@@ -46,8 +51,25 @@ class PlayerDataRestController(val PlayerDataRepo: PlayerDataRepository)
 	}
 }
 
+// CUBE CONTROLLER
+@RestController
+@RequestMapping("api")
+class CubeDataRestController(val CubeDataRepo: CubeDataRepository)
+{
+	@GetMapping("CubeData")
+	fun GetAll() = CubeDataRepo.findAll()
+
+}
+
+// API Call
 @Entity
 class playerdata(
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	val Id: Long = 0, var isvalid: Boolean = false, var pid: Int = -1, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
+	val Id: Long = 0, var isvalid: Boolean = false, var pid: Int = -1,var health: Float = 100.0f, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
+)
+
+@Entity
+class cubedata(
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	val Id: Long = 0, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
 )
