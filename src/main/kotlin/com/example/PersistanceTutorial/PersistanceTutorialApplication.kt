@@ -30,6 +30,11 @@ interface CubeDataRepository: JpaRepository<cubedata, Long>
 
 }
 
+interface MyActorDataRepository: JpaRepository<myactordata, Long>
+{
+
+}
+
 @RestController
 @RequestMapping("api")
 class PlayerDataRestController(val PlayerDataRepo: PlayerDataRepository)
@@ -67,6 +72,22 @@ class CubeDataRestController(val CubeDataRepo: CubeDataRepository)
 
 }
 
+// MyActor CONTROLLER
+@RestController
+@RequestMapping("api")
+class MyActorDataRestController(val MyActorDataRepo: MyActorDataRepository)
+{
+	@GetMapping("MyActorData")
+	fun GetAll() = MyActorDataRepo.findAll()
+
+	@PostMapping("MyActorData")
+	fun SaveMyActorData(@RequestBody MyActorData: myactordata)
+	{
+		MyActorDataRepo.save(MyActorData)
+	}
+
+}
+
 // API Call
 @Entity
 class playerdata(
@@ -78,4 +99,10 @@ class playerdata(
 class cubedata(
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	val Id: Long = 0, var isvalid: Boolean = false, var pid: Int = -1, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
+)
+
+@Entity
+class myactordata(
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	val Id: Long = 0, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
 )
