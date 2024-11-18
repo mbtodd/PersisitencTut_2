@@ -77,5 +77,5 @@ class playerdata(
 @Entity
 class cubedata(
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	val Id: Long = 0, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
+	val Id: Long = 0, var isvalid: Boolean = false, var pid: Int = -1, var XCoord: Float = 0.0f, var YCoord: Float = 0.0f, var ZCoord: Float = 0.0f
 )
